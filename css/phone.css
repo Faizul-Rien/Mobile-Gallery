@@ -17,3 +17,12 @@
     color: green;
     font-weight: 700;
 }
+
+.dark{
+    font-weight: 500;
+}
+
+.error{
+    display: none;
+    text-align: center;
+}
