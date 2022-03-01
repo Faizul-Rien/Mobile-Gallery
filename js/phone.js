@@ -27,6 +27,7 @@ const searchMobile = () =>{
 
     
 }
+
 // display search result 
 const displaySearchResult = mobiles =>{
     const searchResultDisplay = document.getElementById('search-display');
@@ -35,8 +36,7 @@ const displaySearchResult = mobiles =>{
     searchResultDisplay.innerHTML ='';
 
     mobiles.forEach(mobile =>{
-        
-    
+
     const div = document.createElement('div');
     div.classList.add('col');
     div.innerHTML =`
@@ -51,6 +51,7 @@ const displaySearchResult = mobiles =>{
     `;
     searchResultDisplay.appendChild(div)
     })
+    console.log(mobiles);
 }
 // mobile details function 
 const loadMobileDetails = mobileId =>{
@@ -77,12 +78,12 @@ const displayMobileDetails = mobile =>{
                   <p><span class="dark">Display Size</span> : ${mobile.mainFeatures.displaySize} </p>
                   <p><span class="dark">Release Date</span> : ${mobile.releaseDate ? mobile.releaseDate : "No release-date found!!"}</p>
                 <h6 class="text"> Other Features </h6>
-                  <p><span class="dark">Bluetooth</span> : ${mobile.others.Bluetooth}</p>
-                  <p><span class="dark">Radio</span> : ${mobile.others.Radio}</p>
-                  <p><span class="dark">GPS</span> : ${mobile.others.GPS}</p>
-                  <p><span class="dark">NFC</span> : ${mobile.others.NFC}</p>
-                  <p><span class="dark">USB</span> : ${mobile.others.USB}</p>
-                  <p><span class="dark">WLAN</span> : ${mobile.others.WLAN}</p>
+                <p><span class="dark">Bluetooth</span> : ${mobile.others ? mobile.others.Bluetooth : "No data Found!!!"}</p>
+                  <p><span class="dark">Radio</span> : ${mobile.others ?  mobile.others.Radio : "No data Found!!!"}</p>
+                  <p><span class="dark">GPS</span> : ${mobile.others  ? mobile.others.GPS : "No data Found!!!"}</p>
+                  <p><span class="dark">NFC</span> : ${mobile.others  ? mobile.others.NFC : "No data Found!!!"}</p>
+                  <p><span class="dark">USB</span> : ${mobile.others  ? mobile.others.USB : "No data Found!!!"}</p>
+                  <p><span class="dark">WLAN</span> : ${mobile.others  ? mobile.others.WLAN : "No data Found!!!"}</p>
                   
             </div>
         `;
@@ -90,9 +91,9 @@ const displayMobileDetails = mobile =>{
         mobile.mainFeatures.sensors.forEach(sensor => {
             const sensors = sensor;
             })
+            console.log(mobile)
     
         displayDetails.appendChild(div)
         
-  
 }
 
