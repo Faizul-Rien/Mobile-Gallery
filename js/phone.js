@@ -5,9 +5,9 @@ const searchMobile = () =>{
 
     searchField.value = '';
 
-    // alert message for empty string search 
+    // error message for empty string search 
     const error = document.getElementById('error');
-    if( searchText === '' ){
+    if( searchText === ''){
         error.style.display ='block';
     const searchResultDisplay = document.getElementById('search-display');
     const displayDetails = document.getElementById('display-details');
