@@ -1,6 +1,19 @@
+.header {
+    color: green;
+}
 .card{
   width: 370px;
   margin-left: 15px;
   margin-bottom: 20px;
   margin-top: 20px;
+ 
+}
+
+.text{
+    color: tomato;
+}
+
+.name{
+    color: green;
+    font-weight: 700;
 }
