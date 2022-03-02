@@ -7,7 +7,7 @@ const searchMobile = () =>{
 
     // error message for empty string search 
     const error = document.getElementById('error');
-    if( searchText === ''){
+    if( searchText === '' ){
         error.style.display ='block';
     const searchResultDisplay = document.getElementById('search-display');
     const displayDetails = document.getElementById('display-details');
@@ -17,15 +17,18 @@ const searchMobile = () =>{
     } 
 
     else{
-        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-
-        fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data.data.slice(0,20)))
         error.style.display ='none';
     }
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displaySearchResult(data.data.slice(0,20)))
+
+    // let value = data;
 
     
+
 }
 
 // display search result 
@@ -35,23 +38,41 @@ const displaySearchResult = mobiles =>{
     displayDetails.innerHTML = '';
     searchResultDisplay.innerHTML ='';
 
+    // wrong mobile search error message 
+    if(mobiles?.length == 0 ){
+        document.getElementById('error').style.display ='block';
+    }
+
+    else{
+        
+        document.getElementById('error').style.display ='none';
+    }
+
+   
+   
     mobiles.forEach(mobile =>{
 
-    const div = document.createElement('div');
-    div.classList.add('col');
-    div.innerHTML =`
-    <div class="card px-2 border border-info pt-2">
-        <img src="${mobile.image}" class="card-img-top" height="400px" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Name : ${mobile.phone_name}</h5>
-            <p class="card-text">Brand : ${mobile.brand}</p>
-            </div>
-        <button onclick="loadMobileDetails('${mobile.slug}')" class="w-25 ms-3 mb-2 text-white rounded  bg-primary border-0">Details</button>
-    </div>
-    `;
-    searchResultDisplay.appendChild(div)
-    })
-    console.log(mobiles);
+        const div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML =`
+        <div class="card px-2 border border-info pt-2">
+            <img src="${mobile.image}" class="card-img-top" height="400px" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Name : ${mobile.phone_name}</h5>
+                <p class="card-text">Brand : ${mobile.brand}</p>
+                </div>
+            <button onclick="loadMobileDetails('${mobile.slug}')" class="w-25 ms-3 mb-2 text-white rounded  bg-primary border-0">Details</button>
+        </div>
+        `;
+        searchResultDisplay.appendChild(div)
+        
+        })
+        console.log(mobiles);
+        
+       
+       
+
+       
 }
 // mobile details function 
 const loadMobileDetails = mobileId =>{
