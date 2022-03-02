@@ -3,6 +3,7 @@ const searchMobile = () =>{
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
 
+    // clean search field 
     searchField.value = '';
 
     // error message for empty string search 
@@ -13,21 +14,16 @@ const searchMobile = () =>{
     const displayDetails = document.getElementById('display-details');
     displayDetails.innerHTML = '';
     searchResultDisplay.innerHTML ='';
-
     } 
 
     else{
         error.style.display ='none';
     }
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => displaySearchResult(data.data.slice(0,20)))
-
-    // let value = data;
-
-    
+    .then(data => displaySearchResult(data.data.slice(0,20)))  
 
 }
 
@@ -44,12 +40,9 @@ const displaySearchResult = mobiles =>{
     }
 
     else{
-        
         document.getElementById('error').style.display ='none';
     }
 
-   
-   
     mobiles.forEach(mobile =>{
 
         const div = document.createElement('div');
@@ -67,12 +60,7 @@ const displaySearchResult = mobiles =>{
         searchResultDisplay.appendChild(div)
         
         })
-        console.log(mobiles);
-        
-       
-       
-
-       
+             
 }
 // mobile details function 
 const loadMobileDetails = mobileId =>{
@@ -95,7 +83,7 @@ const displayMobileDetails = mobile =>{
                 <h6 class="text"> Main Features </h6>
                   <p><span class="dark">Storage</span> : ${mobile.mainFeatures.storage}</p>
                   <p><span class="dark">Sensors</span> : ${mobile.mainFeatures.sensors} </p>
-                  <p><span class="dark">ChipSet</span> : ${mobile.mainFeatures.chipSet} </p>
+                  <p><span class="dark">ChipSet</span> : ${mobile.mainFeatures.chipSet ? mobile.mainFeatures.chipSet : "No data Found!!!" } </p>
                   <p><span class="dark">Display Size</span> : ${mobile.mainFeatures.displaySize} </p>
                   <p><span class="dark">Release Date</span> : ${mobile.releaseDate ? mobile.releaseDate : "No release-date found!!"}</p>
                 <h6 class="text"> Other Features </h6>
@@ -112,9 +100,7 @@ const displayMobileDetails = mobile =>{
         mobile.mainFeatures.sensors.forEach(sensor => {
             const sensors = sensor;
             })
-            console.log(mobile)
     
         displayDetails.appendChild(div)
-        
 }
 
